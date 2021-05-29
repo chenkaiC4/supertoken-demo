@@ -1,7 +1,9 @@
-import axios from "axios";
-import Session from "supertokens-auth-react/recipe/session";
-import { useHistory } from "react-router-dom";
-import { getApiDomain } from "../App";
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import Session from 'supertokens-auth-react/recipe/session';
+
+import { getApiDomain } from '../App';
+
 Session.addAxiosInterceptors(axios);
 
 export default function CallAPIView() {
@@ -13,6 +15,7 @@ export default function CallAPIView() {
             let response = await axios.get(getApiDomain() + "/sessioninfo");
             window.alert("Session Information:\n" + JSON.stringify(response.data, null, 2))
         } catch (err) {
+            console.log(err)
             if (err.status === 401) {
                 window.alert("Oops! Your session has expired!");
                 history.push("/auth");

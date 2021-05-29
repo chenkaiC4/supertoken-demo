@@ -1,10 +1,12 @@
 import './App.css';
-import SuperTokens, { getSuperTokensRoutesForReactRouterDom } from "supertokens-auth-react"
-import EmailPassword from "supertokens-auth-react/recipe/emailpassword";
-import Session from "supertokens-auth-react/recipe/session";
-import Home from "./Home";
-import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
-import Footer from "./Footer";
+
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import SuperTokens, { getSuperTokensRoutesForReactRouterDom } from 'supertokens-auth-react';
+import EmailPassword from 'supertokens-auth-react/recipe/emailpassword';
+import Session from 'supertokens-auth-react/recipe/session';
+
+import Footer from './Footer';
+import Home from './Home';
 
 export function getApiDomain() {
   const apiPort = process.env.REACT_APP_API_PORT || 3001;
@@ -19,17 +21,13 @@ export function getWebsiteDomain() {
 }
 
 SuperTokens.init({
-  appInfo: {
-    appName: "SuperTokens Demo App",
-    apiDomain: getApiDomain(),
-    websiteDomain: getWebsiteDomain()
-  },
+    appInfo: {
+      appName: 'test',
+      websiteDomain:`http://localhost:3000`,
+      apiDomain: `http://localhost:3001`,
+    },
   recipeList: [
-    EmailPassword.init({
-      emailVerificationFeature: {
-        mode: "REQUIRED"
-      }
-    }),
+    EmailPassword.init(),
     Session.init()
   ]
 });
